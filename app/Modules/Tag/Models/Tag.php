@@ -1,9 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace App\Modules\Tag\Models;
 
+use App\Modules\Post\Models\Post;
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @method static create(array $validated)
+ */
 class Tag extends Model
 {
     protected $table = 'tags';
