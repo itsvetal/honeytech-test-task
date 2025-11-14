@@ -3,6 +3,7 @@
 namespace App\Modules\Tag\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Tag\Http\Requests\Web\TagRequest;
 use App\Modules\Tag\Models\Tag;
 use Illuminate\Http\Request;
 
@@ -28,10 +29,9 @@ class TagController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): \Illuminate\Http\RedirectResponse
+    public function store(TagRequest $request): \Illuminate\Http\RedirectResponse
     {
-        $validated = $request->validate(['name' => 'required|string|unique:tags']);
-        Tag::create($validated);
+        Tag::create($request->validated());
         return redirect()->route('tags.index')->with('success', 'Tag created');
     }
 
@@ -54,7 +54,7 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tag $tag)
+    public function update(TagRequest $request, Tag $tag)
     {
         //
     }

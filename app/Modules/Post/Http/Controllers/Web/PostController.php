@@ -3,6 +3,7 @@
 namespace App\Modules\Post\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Modules\Post\Http\Requests\Web\PostRequest;
 use App\Modules\Post\Models\Post;
 use App\Modules\Tag\Models\Tag;
 use Illuminate\Http\Request;
@@ -12,7 +13,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function index(PostRequest $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $query = Post::with('tags');
         $query->when($request->has('tag'), function ($query) use ($request) {
@@ -38,7 +39,7 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
         $request->validate([
 
@@ -64,7 +65,7 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
         //
     }
