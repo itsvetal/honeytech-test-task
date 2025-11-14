@@ -14,5 +14,3 @@ foreach ($modules as $modulePath) {
     }
 }
 
-Route::get('/tags', [TagController::class, 'index'])->name('tags.index');
-Route::resource('tags', TagController::class)->except('show', 'edit', 'update');
