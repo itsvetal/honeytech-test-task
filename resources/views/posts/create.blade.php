@@ -18,7 +18,15 @@
 
         <div>
             <label for="thumbnail">Thumbnail (зображення прев'ю):</label>
-            <input type="file" name="thumbnail" id="thumbnail" accept="image/*">
+            <input type="file" name="thumbnail" id="thumbnail" accept="image/*" onchange="previewImage(event)">
+            <img id="preview" style="max-width:200px; display:none; margin-top:10px;">
+            <script>
+                function previewImage(event) {
+                    const preview = document.getElementById('preview');
+                    preview.src = URL.createObjectURL(event.target.files[0]);
+                    preview.style.display = 'block';
+                }
+            </script>
             @error('thumbnail') <span class="error">{{ $message }}</span> @enderror
         </div>
 
