@@ -7,6 +7,7 @@ use App\Modules\Post\Http\Requests\Web\PostRequest;
 use App\Modules\Post\Models\Post;
 use App\Modules\Tag\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -41,7 +42,16 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $post = Post::create($request->validated());
+        $validated = $request->validated();
+
+        $thumbnailPath = null;
+        if ($request->hasFile('thumbnail')) {
+            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+            $validated['thumbnail'] = $thumbnailPath;
+        }
+
+        $post = Post::create($validated);
+
         if ($request->has('tags')) {
             $post->tags()->attach($request->tags);
         }
@@ -72,6 +82,15 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
+        $validated = $request->validated();
+
+        if ($post->thumbnail) {
+            Storage::disk('public')->delete($post->thumbnail);
+        }
+
+        $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+        $validated['thumbnail'] = $thumbnailPath;
+
         $post->update($request->validated());
         $post->tags()->sync($request->tags ?? []);
         return redirect()->route('posts.index')->with('success', 'Post is updated!');

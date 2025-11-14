@@ -13,6 +13,7 @@
     <div class="post-list">
         @foreach($posts as $post)
             <li>
+                <img src="{{$post->thumbnail_url}}" alt="">
                 <h3><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></h3>
                 <p>{{ Str::limit($post->content, 100) }}</p>
                 <small>Теги: @foreach($post->tags as $tag) <span class="tag">{{ $tag->name }}</span> @endforeach</small>
