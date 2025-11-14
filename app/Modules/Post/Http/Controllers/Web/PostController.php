@@ -13,7 +13,7 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(PostRequest $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+    public function index(Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $query = Post::with('tags');
         $query->when($request->has('tag'), function ($query) use ($request) {
@@ -23,7 +23,7 @@ class PostController extends Controller
         });
 
         $posts = $query->paginate(10);
-        return view('posts.index', compact($posts));
+        return view('posts.index', compact('posts'));
     }
 
     /**
@@ -41,9 +41,11 @@ class PostController extends Controller
      */
     public function store(PostRequest $request)
     {
-        $request->validate([
-
-        ]);
+        $post = Post::create($request->validated());
+        if ($request->has('tags')) {
+            $post->tags()->attach($request->tags);
+        }
+        return redirect()->route('posts.index')->with('success', 'Post is created!');
     }
 
     /**
@@ -51,7 +53,8 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        //
+        $post->load('tags');
+        return view('posts.show', compact('post'));
     }
 
     /**
@@ -59,7 +62,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $tags = Tag::all();
+        $post->load('tags');
+        return view('posts.edit', compact('post', 'tags'));
     }
 
     /**
@@ -67,7 +72,9 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-        //
+        $post->update($request->validated());
+        $post->tags()->sync($request->tags ?? []);
+        return redirect()->route('posts.index')->with('success', 'Post is updated!');
     }
 
     /**
@@ -75,6 +82,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('posts.index')->with('success', 'Post is removed!');
     }
 }

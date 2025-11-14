@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Blog</title>
-    @vite(['$__vite_arguments'])
+    @vite(['resources/scss/app.scss'])
 </head>
 <body>
-<div class="wrapper">
+<div class="container">
     <nav>
         <a href="{{route('posts.index')}}">Posts</a>
         <a href="{{route('tags.index')}}">Tags</a>

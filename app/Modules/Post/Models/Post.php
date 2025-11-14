@@ -6,6 +6,9 @@ use App\Modules\Tag\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 
+/**
+ * @method static create(mixed $validated)
+ */
 class Post extends Model
 {
     protected $table = 'posts';
