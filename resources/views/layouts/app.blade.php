@@ -12,7 +12,7 @@
         <a href="{{route('posts.index')}}">Posts</a>
         <a href="{{route('tags.index')}}">Tags</a>
         <a href="{{route('posts.create')}}">Add post</a>
-        <a href="{{route('posts.create')}}">Add tag</a>
+        <a href="{{route('tags.create')}}">Add tag</a>
     </nav>
     @if(session('success'))
         <div style="color: green">{{session('success')}}</div>
