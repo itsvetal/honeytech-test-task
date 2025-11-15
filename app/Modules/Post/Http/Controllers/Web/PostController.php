@@ -7,6 +7,7 @@ use App\Modules\Post\Http\Requests\Web\PostRequest;
 use App\Modules\Post\Models\Post;
 use App\Modules\Tag\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
@@ -106,5 +107,16 @@ class PostController extends Controller
     {
         $post->delete();
         return redirect()->route('posts.index')->with('success', 'Post is removed!');
+    }
+
+    public function demo()
+    {
+        Artisan::call('generate:demo', [
+            '--count' => 15,
+            '--clear' => true
+        ]);
+
+        return redirect()->route('posts.index')
+            ->with('success', 'Demo data is generated! Created 15 posts with tags and images');
     }
 }

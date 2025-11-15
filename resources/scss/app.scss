@@ -2,13 +2,20 @@ $primary-color: #3490dc;
 $font-family: 'Arial', sans-serif;
 
 :root {
-    --bg: #f4f4f4;
+    --bg: #fffefe;
     --text: #333;
 }
 
 [data-theme="dark"] {
     --bg: #333;
-    --text: #f4f4f4;
+    --text: #fffefe;
+}
+
+#theme_toggle {
+    display: block;
+    position: absolute;
+    top: 85px;
+    left: auto;
 }
 
 body {
