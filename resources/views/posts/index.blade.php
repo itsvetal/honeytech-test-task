@@ -17,10 +17,10 @@
                 <h3><a href="{{ route('posts.show', $post) }}">{{ $post->title }}</a></h3>
                 <p>{{ Str::limit($post->content, 100) }}</p>
                 <small>Теги: @foreach($post->tags as $tag) <span class="tag">{{ $tag->name }}</span> @endforeach</small>
-                <a href="{{ route('posts.edit', $post) }}">Редагувати</a>
+                <a href="{{ route('posts.edit', $post) }}">Edit</a>
                 <form method="POST" action="{{ route('posts.destroy', $post) }}" style="display:inline;">
                     @csrf @method('DELETE')
-                    <button type="submit">Видалити</button>
+                    <button type="submit">Delete</button>
                 </form>
             </li>
         @endforeach

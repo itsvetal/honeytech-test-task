@@ -84,14 +84,14 @@ class PostController extends Controller
     {
         $validated = $request->validated();
 
-        if ($post->thumbnail) {
-            Storage::disk('public')->delete($post->thumbnail);
+        if ($request->has('thumbnail')) {
+            if ($post->thumbnail) {
+                Storage::disk('public')->delete($post->thumbnail);
+            }
+            $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
+            $validated['thumbnail'] = $thumbnailPath;
         }
-
-        $thumbnailPath = $request->file('thumbnail')->store('thumbnails', 'public');
-        $validated['thumbnail'] = $thumbnailPath;
-
-        $post->update($request->validated());
+        $post->update($validated);
         $post->tags()->sync($request->tags ?? []);
         return redirect()->route('posts.index')->with('success', 'Post is updated!');
     }
