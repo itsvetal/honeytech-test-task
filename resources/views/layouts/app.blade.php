@@ -11,12 +11,11 @@
 
 
     <nav>
-        <h1>Blog</h1>
+        <h1><a href="{{route('posts.index')}}">Blog</a></h1>
         <div class="nav-links">
+            <a href="{{route('posts.create')}}">Create post</a>
             <a href="{{route('posts.index')}}">Posts</a>
             <a href="{{route('tags.index')}}">Tags</a>
-            <a href="{{route('posts.create')}}">Add post</a>
-            <a href="{{route('tags.create')}}">Add tag</a>
         </div>
     </nav>
     <div class="features">

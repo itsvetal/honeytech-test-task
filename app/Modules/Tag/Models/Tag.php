@@ -18,4 +18,8 @@ class Tag extends Model
     {
         return $this->belongsToMany(Post::class, 'post_tag_relations', 'tag_id', 'post_id');
     }
+
+    public function getPopularityAttribute() {
+        return $this->posts()->count();
+    }
 }

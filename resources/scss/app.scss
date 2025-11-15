@@ -1,5 +1,6 @@
 $primary-color: #3490dc;
 $tag-color: #8bc34a;
+$button-hover-color: #025da8;
 $font-family: 'Arial', sans-serif;
 
 :root {
@@ -30,6 +31,10 @@ nav {
 
     a {
         color: #fffefe;
+    }
+
+    a:hover {
+        color: #e8e8e8;
     }
 }
 
@@ -127,11 +132,19 @@ form {
     }
 }
 
+.action-button:hover {
+    background-color: $button-hover-color;
+}
+
 .action-button__container {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     gap: 10px;
+
+    button:hover {
+        background-color: $button-hover-color;
+    }
 }
 
 li {
@@ -171,6 +184,10 @@ li {
             0 2px 5px rgba(0, 0, 0, 0.1);
             transform: translateY(-5px);
         }
+    }
+
+    span {
+        color: $tag-color;
     }
 }
 
@@ -315,13 +332,35 @@ nav[role="navigation"] {
     button {
         width: fit-content;
     }
+
+    button:hover {
+        background-color: $button-hover-color;
+    }
 }
 
 .create-tag-container {
     margin-left: 10px;
+
+    button:hover {
+        background-color: $button-hover-color;
+    }
 }
 
 .tag-index-container {
     margin-left: 10px;
+
+    .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        a {
+            margin: 5px;
+            padding: 5px;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: all 0.3s;
+        }
+    }
 }
 
