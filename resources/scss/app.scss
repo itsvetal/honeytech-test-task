@@ -338,6 +338,61 @@ nav[role="navigation"] {
     }
 }
 
+.tags-section {
+    margin: 20px 0;
+
+    label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    .checkboxes-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        max-height: 200px;
+        overflow-y: auto;
+        border: 1px solid #ddd;
+        padding: 10px;
+        border-radius: 4px;
+        background: #f9f9f9;
+    }
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        padding: 8px 12px;
+        border-radius: 20px;
+        transition: background 0.2s ease;
+
+        input[type="checkbox"] {
+            margin-right: 8px;
+            accent-color: $primary-color;
+        }
+
+        &:hover {
+            background: rgba($primary-color, 0.1);
+        }
+
+        input:checked + span {
+            font-weight: bold;
+        }
+    }
+}
+
+[data-theme="dark"] {
+    .checkboxes-container {
+        background: #333;
+        border-color: #555;
+    }
+
+    .checkbox-label:hover {
+        background: rgba($primary-color, 0.2);
+    }
+}
+
 .create-tag-container {
     margin-left: 10px;
 

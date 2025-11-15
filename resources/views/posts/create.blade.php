@@ -31,14 +31,17 @@
                 @error('thumbnail') <span class="error">{{ $message }}</span> @enderror
             </div>
 
-            <div>
-                <label>Теги:</label>
-                <select name="tags[]">
+            <div class="tags-section">
+                <label>Tags:</label>
+                <div class="checkboxes-container">
                     @foreach($tags as $tag)
-                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="tags[]" value="{{ $tag->id }}" {{ in_array($tag->id, old('tags', [])) ? 'checked' : '' }}>
+                            {{ $tag->name }}
+                        </label>
                     @endforeach
-                </select>
-                @error('tags') <span class="error">{{ $message }}</span> @enderror
+                </div>
+                @error('tags') <span class="error" style="color: red;">{{ $message }}</span> @enderror
             </div>
 
             <button type="submit">Create</button>
