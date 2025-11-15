@@ -1,4 +1,5 @@
 $primary-color: #3490dc;
+$tag-color: #8bc34a;
 $font-family: 'Arial', sans-serif;
 
 :root {
@@ -58,6 +59,31 @@ nav {
 .tag-selector {
     margin-left: 10px;
 }
+
+.back-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: transparent;
+    width: 100%;
+    margin-bottom: 10px;
+    border: none;
+
+}
+
+.back-button:hover {
+    cursor: pointer;
+
+    a {
+        color: $primary-color;
+    }
+
+    svg {
+        fill: $primary-color;
+    }
+}
+
 
 .container {
     max-width: 1440px;
@@ -240,6 +266,15 @@ nav[role="navigation"] {
             height: 100%;
             object-fit: cover;
             display: block;
+        }
+    }
+
+    .post-show-tag {
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
+        span {
+            color: $tag-color;
         }
     }
 }
