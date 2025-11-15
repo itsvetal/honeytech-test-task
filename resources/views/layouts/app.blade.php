@@ -8,12 +8,16 @@
 </head>
 <body>
 <div class="container">
-    <button id="theme_toggle">🌙 Theme Switcher</button>
+
+
     <nav>
-        <a href="{{route('posts.index')}}">Posts</a>
-        <a href="{{route('tags.index')}}">Tags</a>
-        <a href="{{route('posts.create')}}">Add post</a>
-        <a href="{{route('tags.create')}}">Add tag</a>
+        <h1>Blog</h1>
+        <div class="nav-links">
+            <a href="{{route('posts.index')}}">Posts</a>
+            <a href="{{route('tags.index')}}">Tags</a>
+            <a href="{{route('posts.create')}}">Add post</a>
+            <a href="{{route('tags.create')}}">Add tag</a>
+        </div>
     </nav>
     @if(session('success'))
         <div style="color: green">{{session('success')}}</div>
@@ -22,7 +26,6 @@
 </div>
 <script>
     const toggle = document.getElementById('theme_toggle');
-    // toggle.textContent = '🌙 Theme Switcher';
     toggle.onclick = () => {
         document.documentElement.dataset.theme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
         localStorage.setItem('theme', document.documentElement.dataset.theme);
