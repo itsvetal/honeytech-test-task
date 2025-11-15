@@ -1,17 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="features">
-        <button id="theme_toggle">🌙 Theme Switcher</button>
-        <button>
-            <a href="{{ route('posts.demo') }}"
-               class="demo-btn"
-               onclick="return confirm('This will remove existing posts and generate new demo data. Continue?');">
-                Generate demo posts
-            </a>
-        </button>
-    </div>
-
     <form method="GET" action="{{ route('posts.index') }}">
         <select class="tag-selector" name="tag" onchange="this.form.submit()">
             <option value="">All</option>

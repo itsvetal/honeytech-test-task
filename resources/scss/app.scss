@@ -279,3 +279,41 @@ nav[role="navigation"] {
     }
 }
 
+.edit-post-container {
+    padding-inline: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    .preview-container {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            margin-bottom: 10px;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+
+        div {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+
+    textarea {
+        min-width: 500px;
+        min-height: 200px;
+    }
+
+    button {
+        width: fit-content;
+    }
+}
+

@@ -19,6 +19,16 @@
             <a href="{{route('tags.create')}}">Add tag</a>
         </div>
     </nav>
+    <div class="features">
+        <button id="theme_toggle">🌙 Theme Switcher</button>
+        <button>
+            <a href="{{ route('posts.demo') }}"
+               class="demo-btn"
+               onclick="return confirm('This will remove existing posts and generate new demo data. Continue?');">
+                Generate demo posts
+            </a>
+        </button>
+    </div>
     @if(session('success'))
         <div style="color: green">{{session('success')}}</div>
     @endif
