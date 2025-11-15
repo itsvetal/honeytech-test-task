@@ -17,11 +17,14 @@ class PostController extends Controller
     public function index(Request $request): \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
     {
         $query = Post::with('tags');
-        $query->when($request->has('tag'), function ($query) use ($request) {
-            $query->whereHas('tags', function ($q) use($request) {
-                $q->where('name', $request->tag);
+
+        if ($request->filled('tag')) {
+            $query->when($request->has('tag'), function ($query) use ($request) {
+                $query->whereHas('tags', function ($q) use($request) {
+                    $q->where('name', $request->tag);
+                });
             });
-        });
+        }
 
         $posts = $query->paginate(10);
         return view('posts.index', compact('posts'));

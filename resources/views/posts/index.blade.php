@@ -4,7 +4,7 @@
     <h2>Список постів</h2>
     <form method="GET" action="{{ route('posts.index') }}">
         <select name="tag" onchange="this.form.submit()">
-            <option value="">Всі</option>
+            <option value="">All</option>
             @foreach(\App\Modules\Tag\Models\Tag::all() as $tag)
                 <option value="{{ $tag->name }}" {{ request('tag') == $tag->name ? 'selected' : '' }}>{{ $tag->name }}</option>
             @endforeach

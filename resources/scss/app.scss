@@ -1,6 +1,16 @@
 $primary-color: #3490dc;
 $font-family: 'Arial', sans-serif;
 
+:root {
+    --bg: #f4f4f4;
+    --text: #333;
+}
+
+[data-theme="dark"] {
+    --bg: #333;
+    --text: #f4f4f4;
+}
+
 body {
     font-family: $font-family;
     margin: 0;
@@ -9,8 +19,10 @@ body {
 
 .container {
     max-width: 1440px;
+    min-height: 100vh;
     margin: 0 auto;
-    background: white;
+    background: var(--bg);
+    color: var(--text);
     padding: 20px;
     border-radius: 5px;
 }
@@ -31,6 +43,10 @@ form {
         border-radius: 4px;
         cursor: pointer;
     }
+}
+
+li {
+    list-style: none;
 }
 
 .post-list {

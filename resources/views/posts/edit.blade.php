@@ -36,7 +36,7 @@
 
         <div>
             <label>Tags:</label>
-            <select name="tags[]" multiple>
+            <select name="">
                 @foreach($tags as $tag)
                     <option value="{{ $tag->id }}" {{ $post->tags->contains($tag->id) ? 'selected' : '' }}>{{ $tag->name }}</option>
                 @endforeach
